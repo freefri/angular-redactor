@@ -23,6 +23,14 @@
                     scope.redactorLoaded = false;
 
                     var updateModel = function updateModel(value) {
+                            if (attrs.ngPlaceholder !== undefined) {
+                                // add placeholder compatibility
+                                if (value === '') {
+                                    $_element.addClass('redactor-placeholder');
+                                } else {
+                                    $_element.removeClass('redactor-placeholder');
+                                }
+                            }
                             // $timeout to avoid $digest collision
                             $timeout(function() {
                                 scope.$apply(function() {
